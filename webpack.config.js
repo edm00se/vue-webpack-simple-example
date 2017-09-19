@@ -1,11 +1,13 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const isProd = process.env.NODE_ENV === 'production';
+const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: isProd ? './dist/' : '',
     filename: 'build.js'
   },
   module: {
@@ -48,7 +50,7 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
@@ -65,6 +67,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new BaseHrefWebpackPlugin({ baseHref: '/vue-example/' })
   ])
 }
