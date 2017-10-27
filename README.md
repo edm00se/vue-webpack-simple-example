@@ -14,7 +14,7 @@ How I "solved" it, although there is probably an easier way.
 ![before screenshot showing failing network response for logo](static/before.png)
 
 #### After
-![after screenshot showing successful network response for logo](static/before.png)
+![after screenshot showing successful network response for logo](static/after.png)
 
 [Check out the diff!](https://github.com/edm00se/vue-webpack-simple-example/compare/a53181f...6c8488f).
 
